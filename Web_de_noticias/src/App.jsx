@@ -4,6 +4,7 @@ import Home from './components/Home/Home'
 import Header from './components/Header/Header'
 import Form from './components/Form/Form'
 import Footer from './components/Footer/Footer'
+import ListNews from './components/ListNews/ListNews'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/form' element={<Form/>}/>
+        <Route path='/list' element={<ListNews/>}/>
       </Routes>
       <Footer/>
     </BrowserRouter>
