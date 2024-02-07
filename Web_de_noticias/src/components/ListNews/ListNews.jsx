@@ -1,28 +1,37 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios'
 import ApiKey from '../ApiKey/ApiKey';
 
 const ListNews = () => {
   const [articles, setArticles] = useState([])
 
-  useEffect(() => {
-    getArticles()
-  }, [])
-
-  const getArticles = async () => {
+  const getArticles = async () =>{
     try {
       const response = await axios.get(`https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=${ApiKey.key}`)
-      console.log('response: ', response);
+
+      setArticles(response.data.results)
     } catch (error) {
       console.log(error)
     }
   }
 
+  useEffect(() => {
+    getArticles()
+  }, [])
+
   return (
-    <>
+    <div>
+      <>
+        {articles.map((article, index) => (
+          <p key={index}>{article.title}
+            <p>{article.abstract}</p>
+            <Link to={article.url}>{article.url}</Link>
+          </p>
+        ))}
+      </>
       
-      <button onClick={getArticles}>Pulsa</button>
-    </>
+    </div>
   )
 }
 
