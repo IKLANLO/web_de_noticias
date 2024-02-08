@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import ApiKey from '../ApiKey/ApiKey';
+import './ListNews.styles.scss'
 
 const ListNews = () => {
   const [articles, setArticles] = useState([])
@@ -24,10 +25,12 @@ const ListNews = () => {
     <div>
       <>
         {articles.map((article, index) => (
-          <p key={index}>{article.title}
-            <p>{article.abstract}</p>
-            <Link to={article.url}>{article.url}</Link>
-          </p>
+          <div className='article-container'>
+            <h5 key={index}>{article.title}
+              <p className='article-container__text'>{article.abstract}</p>
+              <Link to={article.url}>{article.url}</Link>
+            </h5>
+          </div>
         ))}
       </>
       

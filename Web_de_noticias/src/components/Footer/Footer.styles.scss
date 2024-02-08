@@ -1,11 +1,14 @@
 .footer {
-  position: absolute;
-  bottom: .625rem;
-  width: 80%;
+  position:fixed;
+  width: 100%;
+  bottom: 0;
+  padding: .625rem 0 .625rem 0;
+  background-color: #242424;
 
   &__span {
     display: flex;
     justify-content: space-around;
     font-size: smaller;
+    width: 90%;
   }
 }
