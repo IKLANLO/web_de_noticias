@@ -1,37 +1,23 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios'
-import ApiKey from '../../ApiKey/ApiKey';
+import { useContext, useEffect } from 'react';
 import './ListNews.styles.scss'
 import { Article } from '../Article/Article';
+import { GlobalContext } from '../../context/GlobalState';
 
 const ListNews = () => {
-  const [articles, setArticles] = useState([])
-
-  const getArticles = async () =>{
-    try {
-      const response = await axios.get(`https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=${ApiKey.key}`)
-      setArticles(response.data.results)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  const { articles, getArticles } = useContext(GlobalContext)
 
   useEffect(() => {
     getArticles()
   }, [])
 
-  return (
-    <div>
-      <>
-        {articles.map((article, id) => (
-          <div className='article-container'>
-            <Article key={id} data={article}/>
-          </div>
-        ))}
-      </>
-      
-    </div>
-  )
+  const article = articles.map((article) => {
+    return (
+        <div className='article-container'>
+          <Article key={article.id} data={article}/>
+        </div>
+    )
+  })
+  return <>{article}</>
 }
 
 export default ListNews
