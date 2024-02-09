@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Form.styles.scss'
+import Swal from 'sweetalert2'
 
 
 const Form = () => {
@@ -42,10 +43,8 @@ const Form = () => {
     }
   }
 
-  const Alert = (event) => {
-    console.log('data: ' + data.name.length);
+  const Alert = () => {
     if(data.name.length < 1 || !data.info || !data.url){
-      event.preventDefault()
       Swal.fire({
         title: 'Error!',
         text: 'Rellena todos los campos',
