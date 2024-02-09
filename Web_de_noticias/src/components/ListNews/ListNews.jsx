@@ -32,9 +32,8 @@ const ListNews = () => {
         {data.url = 'http://' + data.url}
         return (
           <div className='article-container'>
-            <h5 key={data.name}>{data.name}</h5>
+            <Link key={data.name} to={data.url}>{data.name}</Link>
             <p className='article-text'>{data.info}</p>
-            <Link to={data.url}>{data.url}</Link>
           </div>
         )  
     })
