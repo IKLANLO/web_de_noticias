@@ -39,8 +39,19 @@ const Form = () => {
       console.log({message: `data stored successfully: `}, {name: data.name,
       email: data.info}, {url: data.url})
       setTimeout(() => {navigate('/list')}, 1000)
-    } else {
-      
+    }
+  }
+
+  const Alert = (event) => {
+    console.log('data: ' + data.name.length);
+    if(data.name.length < 1 || !data.info || !data.url){
+      event.preventDefault()
+      Swal.fire({
+        title: 'Error!',
+        text: 'Rellena todos los campos',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      })
     }
   }
 
@@ -52,7 +63,7 @@ const Form = () => {
           <textarea className='form__data__box' rows={10} placeholder='texto' name='info' value={data.info} onChange={handleInputChange}/>
           <input className='form__data__box' placeholder='url' type='text' name='url' value={data.url} onChange={handleInputChange}/>
         </div>
-        <button type='submit'>Submit</button>
+        <button type='submit' onClick={Alert}>Submit</button>
       </form>
     </>
   )
