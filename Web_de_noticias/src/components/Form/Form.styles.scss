@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  // max-width: 80%;
 
   &__data {
     display: flex;
@@ -13,9 +12,20 @@
 
     &__box {
       border-radius: .3125rem;
-      border-color: rgb(84, 117, 148);
+      background-color: #1E3748;
+      color: white;
+      border-color: darkslateblue;
       border-style: solid;
       margin-top: .625rem;
+    }
+
+    ::placeholder {
+      color: white;
+      font-style: italic;
+    }
+
+    :focus::placeholder{
+      color: #7B96CC;
     }
   }
 }

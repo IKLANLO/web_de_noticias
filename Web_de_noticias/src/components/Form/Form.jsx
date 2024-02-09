@@ -19,26 +19,29 @@ const Form = () => {
   
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log('data: ' + localData);
+    if(data.name && data.info && data.url){
+      if(localData !== null){
+          localData.push({
+            name: data.name,
+            info: data.info,
+            url: data.url
+          })
+        
+      } else {
+          localData = [{
+            name: data.name,
+            info: data.info,
+            url: data.url
+          }]
+      }
 
-    if(localData !== null){
-      localData.push({
-        name: data.name,
-        info: data.info,
-        url: data.url
-      })
+      localStorage.setItem('data', JSON.stringify(localData))
+      console.log({message: `data stored successfully: `}, {name: data.name,
+      email: data.info}, {url: data.url})
+      setTimeout(() => {navigate('/list')}, 1000)
     } else {
-      localData = [{
-        name: data.name,
-        info: data.info,
-        url: data.url
-      }]
+      
     }
-
-    localStorage.setItem('data', JSON.stringify(localData))
-    console.log({message: `data stored successfully: `}, {name: data.name,
-     email: data.info}, {url: data.url})
-    setTimeout(() => {navigate('/list')}, 1000)
   }
 
   return (
